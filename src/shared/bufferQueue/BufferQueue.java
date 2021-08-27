@@ -8,7 +8,7 @@ import java.util.Queue;
 
 public class BufferQueue<T extends Resource> {
 
-    Queue<T> sharedResourceQueue = new LinkedList<>();
+    private Queue<T> sharedResourceQueue = new LinkedList<>();
 
     public void addToQueue(T object) {
         sharedResourceQueue.add(object);

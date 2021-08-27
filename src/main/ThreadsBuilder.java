@@ -23,21 +23,21 @@ public class ThreadsBuilder<T extends Resource> extends Thread {
         this.producerThread = new ProducerThread<T>(bufferQueue, factory);
     }
 
-    public void runProducerThreads(){
-        producerThread.start();
-    }
-
-    public void runConsumerThreads() {
-        populateConsumerThreadsList();
-        consumerThreads.forEach(Thread::start);
-    }
-
     @Override
     public void run(){
         runProducerThreads();
         runConsumerThreads();
         waitForProducerToStop();
         stopConsumerThreads();
+    }
+
+    private void runProducerThreads(){
+        producerThread.start();
+    }
+
+    private void runConsumerThreads() {
+        populateConsumerThreadsList();
+        consumerThreads.forEach(Thread::start);
     }
 
     private void waitForProducerToStop() {
